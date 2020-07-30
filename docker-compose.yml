@@ -5,19 +5,9 @@ services:
     image: "selenium/standalone-chrome:3.14"
     restart: always
     ports:
-      - 4444
+      - 4444:4444
     networks:
       - selenium
-  runner:
-    build: .
-    networks:
-      - selenium
-    volumes:
-      - "./images/:/root/images"
-#      - type: bind
-#        source: "./userdata/"
-#        target: "/workdir/userdata"
-#        read_only: true
 
 networks:
   selenium:
