@@ -12,7 +12,9 @@ import os
 # Determine our landscape first and use that to determine the appropriate defaults
 landscape = os.environ.get('LANDSCAPE', 'prod')
 if landscape == 'syst':
-    default_sp = 'http://ist-shib-verify-prod.bu.edu/shibboleth'
+    #default_sp = 'http://ist-shib-verify-syst.bu.edu/shibboleth'
+    default_sp = 'https://www.jitbit.com/web-helpdesk/'
+    #default_sp = 'https://learn.bu.edu/shibboleth-sp'
     default_host = "shib-syst.bu.edu"
 elif landscape == 'test':
     default_sp = 'http://ist-shib-verify-syst.bu.edu/shibboleth'
@@ -88,6 +90,11 @@ class InputFormsCheck(unittest.TestCase):
 
             # if the authentication worked then we shouldn't be on the login page
             assert driver.title != 'Boston University | Login'
+
+            # the default_sp (verify nodes) put the username in the title which is a simple
+            # check that authentication worked and got the correct username
+            if default_sp == shib_sp:
+                assert shib_user in driver.title
 
         except:
             print("ERROR: title='%s' error=%s" % (driver.title, self.get_error_text()))
