@@ -45,9 +45,10 @@ class InputFormsCheck(unittest.TestCase):
     #Opening browser.
     def setUp(self):
         #self.driver = webdriver.Chrome(r'C:\Users\pc\Downloads\chromedriver.exe')
+        selenium_host = os.environ.get("SELENIUM_SERVER", "localhost")
         self.driver = webdriver.Remote(
             desired_capabilities=webdriver.DesiredCapabilities.CHROME,
-            command_executor="http://tester:4444/wd/hub"
+            command_executor="http://%s:4444/wd/hub" % selenium_host
         )
         self.driver.implicitly_wait(10)
 
