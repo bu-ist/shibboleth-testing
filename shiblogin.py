@@ -13,7 +13,7 @@ import os
 landscape = os.environ.get('LANDSCAPE', 'prod')
 if landscape == 'syst':
     #default_sp = 'http://ist-shib-verify-syst.bu.edu/shibboleth'
-    default_sp = 'https://www.jitbit.com/web-helpdesk/'
+    default_sp = 'bostonuniversity.policytech.com'
     #default_sp = 'https://learn.bu.edu/shibboleth-sp'
     default_host = "shib-syst.bu.edu"
 elif landscape == 'test':
@@ -32,10 +32,23 @@ shib_host = os.environ.get('SHIB_HOST', default_host)
 shib_path = os.environ.get('SHIB_PATH', 'idp/profile/SAML2/Unsolicited/SSO?providerId')
 shib_sp = os.environ.get('SHIB_SP', default_sp)
 
+# Get defaults from the json file
+try:
+    import json
+    fname = os.environ.get('SHIB_PW_FILE', "~/.bupw.json")
+    pwdict = json.loads(open(os.path.expanduser(fname)).read())
+except:
+    pwdict = { 'default': { 'user': "baduser", 'pw': 'badpw' } }
+
+if landscape in pwdict:
+    userpw = pwdict[landscape]
+else:
+    userpw = pwdict['default']
+
 # The following are insecure by default and thus should be defined as secrets in docker
 # fix in the future
-shib_user = os.environ.get('SHIB_USER', 'baduser')
-shib_pw = os.environ.get('SHIB_PW', 'badpw')
+shib_user = os.environ.get('SHIB_USER', userpw['user'])
+shib_pw = os.environ.get('SHIB_PW', userpw['pw'])
 
 import unittest
 from selenium import webdriver
