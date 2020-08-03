@@ -11,11 +11,13 @@ import os
 # ####
 # Determine our landscape first and use that to determine the appropriate defaults
 landscape = os.environ.get('LANDSCAPE', 'prod')
+sp_is_verify = True
 if landscape == 'syst':
     #default_sp = 'http://ist-shib-verify-syst.bu.edu/shibboleth'
     default_sp = 'bostonuniversity.policytech.com'
     #default_sp = 'https://learn.bu.edu/shibboleth-sp'
     default_host = "shib-syst.bu.edu"
+    sp_is_verify = False
 elif landscape == 'test':
     default_sp = 'http://ist-shib-verify-syst.bu.edu/shibboleth'
     default_host = "shib-test.bu.edu"
@@ -77,7 +79,8 @@ class InputFormsCheck(unittest.TestCase):
             except:
                 pass
         
-        # fall back to the page source
+        # fall back to the page source - if this happens we should save a screenshot
+        self.driver.get_screenshot_as_file('./error.png')
         return(self.driver.page_source)
 
     def test_shib_login(self):
@@ -107,7 +110,7 @@ class InputFormsCheck(unittest.TestCase):
 
             # the default_sp (verify nodes) put the username in the title which is a simple
             # check that authentication worked and got the correct username
-            if default_sp == shib_sp:
+            if sp_is_verify:
                 assert shib_user in driver.title
 
         except:
