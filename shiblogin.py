@@ -11,13 +11,13 @@ import os
 # ####
 # Determine our landscape first and use that to determine the appropriate defaults
 landscape = os.environ.get('LANDSCAPE', 'prod')
-sp_is_verify = True
+default_sp_is_verify = True
 if landscape == 'syst':
     #default_sp = 'http://ist-shib-verify-syst.bu.edu/shibboleth'
     default_sp = 'bostonuniversity.policytech.com'
     #default_sp = 'https://learn.bu.edu/shibboleth-sp'
     default_host = "shib-syst.bu.edu"
-    sp_is_verify = False
+    default_sp_is_verify = False
 elif landscape == 'test':
     default_sp = 'http://ist-shib-verify-syst.bu.edu/shibboleth'
     default_host = "shib-test.bu.edu"
@@ -33,6 +33,7 @@ else:
 shib_host = os.environ.get('SHIB_HOST', default_host)
 shib_path = os.environ.get('SHIB_PATH', 'idp/profile/SAML2/Unsolicited/SSO?providerId')
 shib_sp = os.environ.get('SHIB_SP', default_sp)
+sp_is_verify = default_sp_is_verify if shib_sp == default_sp else False 
 
 # Get defaults from the json file
 try:
@@ -110,7 +111,7 @@ class InputFormsCheck(unittest.TestCase):
 
             # the default_sp (verify nodes) put the username in the title which is a simple
             # check that authentication worked and got the correct username
-            if sp_is_verify:
+            if self.sp_is_verify:
                 assert shib_user in driver.title
 
         except:
