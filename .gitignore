@@ -1,1 +1,5 @@
-.vscode
+# .vscode-server would be created if we are doing remote-container development.
+.vscode-server/
+
+# this would be created if there is an unknown error page
+error.png
