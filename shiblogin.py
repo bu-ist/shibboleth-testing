@@ -69,6 +69,10 @@ class InputFormsCheck(unittest.TestCase):
         self.driver.implicitly_wait(10)
 
     def get_error_text(self):
+        # AWS WAF Forbidden page has a special title
+        if self.driver.title == '403 Forbidden':
+            return("ALB WAF blocked the request")
+
         # bunch of different ways to get error text
         # neterror - Chrome network error
         # error-box - Shibboleth IdP login error
