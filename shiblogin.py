@@ -111,7 +111,7 @@ class InputFormsCheck(unittest.TestCase):
 
             # the default_sp (verify nodes) put the username in the title which is a simple
             # check that authentication worked and got the correct username
-            if self.sp_is_verify:
+            if sp_is_verify:
                 assert shib_user in driver.title
 
         except:
