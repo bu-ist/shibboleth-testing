@@ -1,0 +1,93 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "shibboleth-syst-aws (working) ",
+            "type": "python",
+            "request": "launch",
+            "program": "shiblogin.py",
+            "env": {
+                "SHIB_HOST": "iam-shibboleth-idp-syst-alb-alb-1771676676.us-east-1.elb.amazonaws.com",
+                "LANDSCAPE": "syst"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "shibboleth-syst-aws (WAF-blocked) ",
+            "type": "python",
+            "request": "launch",
+            "program": "shiblogin.py",
+            "env": {
+                "SHIB_HOST": "iam-shibboleth-idp-syst-alb-alb-1771676676.us-east-1.elb.amazonaws.com",
+                "LANDSCAPE": "syst",
+                "SHIB_SP": "http://ist-shib-verify-syst.bu.edu/shibboleth"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "shibboleth-syst-crc (working) ",
+            "type": "python",
+            "request": "launch",
+            "program": "shiblogin.py",
+            "env": {
+                "SHIB_HOST": "10.254.17.35",
+                "LANDSCAPE": "syst"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "shibboleth-dev-crc (working) ",
+            "type": "python",
+            "request": "launch",
+            "program": "shiblogin.py",
+            "env": {
+                "SHIB_HOST": "128.197.236.47",
+                "LANDSCAPE": "dev"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "shibboleth-qa-crc (working) ",
+            "type": "python",
+            "request": "launch",
+            "program": "shiblogin.py",
+            "env": {
+                "SHIB_HOST": "128.197.236.35",
+                "LANDSCAPE": "qa"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "shibboleth-test-crc (working) ",
+            "type": "python",
+            "request": "launch",
+            "program": "shiblogin.py",
+            "env": {
+                "SHIB_HOST": "128.197.226.201",
+                "LANDSCAPE": "test"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "shibboleth-prod-crc (working) ",
+            "type": "python",
+            "request": "launch",
+            "program": "shiblogin.py",
+            "env": {
+                "SHIB_HOST": "128.197.236.36",
+                "LANDSCAPE": "prod"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        }
+    ]
+}
