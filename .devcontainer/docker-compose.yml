@@ -1,5 +1,9 @@
 version: '3.2'
 
+secrets:
+  bupw:
+    file: "~/.bupw.json"
+
 services:
   tester:
     image: "selenium/standalone-chrome:3.14"
@@ -14,6 +18,12 @@ services:
     command: "/root/shiblogin.sh devcontainer"      
     networks:
       - selenium
+    secrets:
+      - source: bupw
+        target: bupw.json
+    environment:
+      - SHIB_PW_FILE=/run/secrets/bupw.json
+      - SELENIUM_SERVER=tester
     volumes:
       - "..:/workspace"
 #      - type: bind
