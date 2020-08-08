@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "shiblogin.py",
             "env": {
-                "SHIB_HOST": "iam-shibboleth-idp-syst-alb-alb-1771676676.us-east-1.elb.amazonaws.com",
+                "SHIB_HOST": "iam-shibboleth-idp-syst-alb-alb-1322205639.us-east-1.elb.amazonaws.com",
                 "LANDSCAPE": "syst"
             },
             "console": "integratedTerminal"
@@ -21,7 +21,7 @@
             "request": "launch",
             "program": "shiblogin.py",
             "env": {
-                "SHIB_HOST": "iam-shibboleth-idp-syst-alb-alb-1771676676.us-east-1.elb.amazonaws.com",
+                "SHIB_HOST": "iam-shibboleth-idp-syst-alb-alb-1322205639.us-east-1.elb.amazonaws.com",
                 "LANDSCAPE": "syst",
                 "SHIB_SP": "http://ist-shib-verify-syst.bu.edu/shibboleth"
             },
