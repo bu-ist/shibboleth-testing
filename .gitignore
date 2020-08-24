@@ -3,3 +3,6 @@
 
 # this would be created if there is an unknown error page
 error.png
+
+# Ignore any nodejs working items
+node_modules/
