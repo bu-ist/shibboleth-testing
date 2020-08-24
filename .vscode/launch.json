@@ -39,6 +39,17 @@
             "console": "integratedTerminal"
         },
         {
+            "name": "shibboleth-dev-aws (working) ",
+            "type": "python",
+            "request": "launch",
+            "program": "shiblogin.py",
+            "env": {
+                "SHIB_HOST": "iam-shibboleth-idp-dev-alb-alb-462634695.us-east-1.elb.amazonaws.com",
+                "LANDSCAPE": "dev"
+            },
+            "console": "integratedTerminal"
+        },
+        {
             "name": "shibboleth-dev-crc (working) ",
             "type": "python",
             "request": "launch",
@@ -46,6 +57,17 @@
             "env": {
                 "SHIB_HOST": "128.197.236.47",
                 "LANDSCAPE": "dev"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "shibboleth-qa-aws (working) ",
+            "type": "python",
+            "request": "launch",
+            "program": "shiblogin.py",
+            "env": {
+                "SHIB_HOST": "iam-shibboleth-idp-qa-alb-alb-177589750.us-east-1.elb.amazonaws.com",
+                "LANDSCAPE": "qa"
             },
             "console": "integratedTerminal"
         },
