@@ -6,7 +6,7 @@ secrets:
 
 services:
   tester:
-    image: "selenium/standalone-chrome:3.14"
+    image: "selenium/standalone-chrome"
     restart: always
     ports:
       - 4444

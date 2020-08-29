@@ -13,8 +13,9 @@ import os
 landscape = os.environ.get('LANDSCAPE', 'prod')
 default_sp_is_verify = True
 if landscape == 'syst':
+    default_sp = 'http%3A%2F%2Fist-shib-verify-syst.bu.edu%2Fshibboleth'
     #default_sp = 'http://ist-shib-verify-syst.bu.edu/shibboleth'
-    default_sp = 'bostonuniversity.policytech.com'
+    #default_sp = 'bostonuniversity.policytech.com'
     #default_sp = 'https://learn.bu.edu/shibboleth-sp'
     default_host = "shib-syst.bu.edu"
     default_sp_is_verify = False
@@ -25,7 +26,7 @@ elif landscape == 'prod':
     default_sp = 'http://ist-shib-verify-prod.bu.edu/shibboleth'
     default_host = 'shib.bu.edu'
 else:
-    default_sp = 'http://ist-shib-verify-%s.bu.edu/shibboleth' % landscape
+    default_sp = 'http%%3A%%2F%%2Fist-shib-verify-%s.bu.edu%%2Fshibboleth' % landscape
     default_host = 'shib-%s.bu.edu' % landscape
 
 # now we determine our other defaults
@@ -61,9 +62,11 @@ class InputFormsCheck(unittest.TestCase):
     #Opening browser.
     def setUp(self):
         #self.driver = webdriver.Chrome(r'C:\Users\pc\Downloads\chromedriver.exe')
+        caps = webdriver.DesiredCapabilities.CHROME
+        caps['acceptInsecureCerts'] = True
         selenium_host = os.environ.get("SELENIUM_SERVER", "localhost")
         self.driver = webdriver.Remote(
-            desired_capabilities=webdriver.DesiredCapabilities.CHROME,
+            desired_capabilities=caps,
             command_executor="http://%s:4444/wd/hub" % selenium_host
         )
         self.driver.implicitly_wait(10)
@@ -78,7 +81,7 @@ class InputFormsCheck(unittest.TestCase):
         # error-box - Shibboleth IdP login error
         # content - Shibboleth low-level error
         #
-        for examine in ('neterror', 'error-box', 'content'):
+        for examine in ('neterror', 'error-box', 'error-code', 'content'):
             try:
                 return(self.driver.find_element_by_class_name(examine).text)
             except:
