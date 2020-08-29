@@ -6,12 +6,15 @@ var webdriver = require('selenium-webdriver'),
     until = webdriver.until;
 
 var capabilities = {
-    'browserName': 'Chrome'
-}
+    'browserName': 'Chrome',
+    'platform': 'ANY',
+    'version': ''
+};
 
 var driver = new webdriver.Builder()
     .usingServer('http://tester:4444/wd/hub')
-    .forBrowser('chrome')
+    .withCapabilities(capabilities)
+//    .forBrowser('chrome')
     .build();
 
 driver.get('http://www.google.com').then(function() {
