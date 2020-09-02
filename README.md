@@ -6,7 +6,12 @@ This will do simple Shibboleth IdP login checks.  It has only been tested with t
 
 ### Command line on system
 
-The default `docker-compose.yml` file can be used to start a standalone Selenium server in the background which can then be used by the tool.  This requires
+The default `docker-compose.yml` file can be used to start a standalone Selenium server in the background which can then be used by the tool.  This requires `docker-compose` on the local system.  If you don't have it you can run it manually as:
+
+```
+$ docker run -d --name selenium -p 4444:4444 selenium/standalone-chrome
+```
+
 that the python3 interpreter have the `selenium` module.  This can be installed with the following if you have virtualenv:
 
 ```
