@@ -4,6 +4,7 @@
 # 
 #
 import os
+import sys
 from selenium import webdriver
 import argparse
 
@@ -51,9 +52,10 @@ def main ():
         default_host = "shib-test.bu.edu"
     elif landscape == 'prod':
         default_sp = 'http://ist-shib-verify-prod.bu.edu/shibboleth'
+        default_sp = str('http%%3A%%2F%%2Fist-shib-verify-%s.bu.edu%%2Fshibboleth' % landscape)
         default_host = 'shib.bu.edu'
     else:
-        default_sp = 'http%%3A%%2F%%2Fist-shib-verify-%s.bu.edu%%2Fshibboleth' % landscape
+        default_sp = str('http%%3A%%2F%%2Fist-shib-verify-%s.bu.edu%%2Fshibboleth' % landscape)
         default_host = 'shib-%s.bu.edu' % landscape
 
     # now we determine our other defaults
@@ -90,7 +92,7 @@ def main ():
         driver.implicitly_wait(10)
     except Exception as e:
         print("SHIBLOGIN ERROR: selenium_setup - %s" % str(e) )
-        return(2)
+        sys.exit(2)
 
     # #### 
     # Now we test Shibboleth login
@@ -103,7 +105,7 @@ def main ():
         driver.get(startURL)
     except Exception as e:
         print("SHIBLOGIN ERROR: start- %s" % str(e) )
-        return(2)
+        sys.exit(2)
 
     # we wrap the whole thing in a try block to get more debugging info if there's a failure
     try:
@@ -135,11 +137,14 @@ def main ():
 
     except:
         print("SHIBLOGIN ERROR: login- %s" % get_error_text(driver))
-        return(2)
+        sys.exit(2)
         #print("ERROR: title='%s' error=%s" % (driver.title, get_error_text(driver)))
         #driver.get_screenshot_as_file('./images/state.png')
         #print("ERROR: title='%s' image dumped" % driver.title)
         #raise
+    finally:
+        driver.close()
+
 
 # ####
 # Function to pull error test we want from a page.
