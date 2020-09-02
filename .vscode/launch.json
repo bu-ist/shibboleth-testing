@@ -5,6 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "shiblogin cli test",
+            "type": "python",
+            "request": "launch",
+            "program": "shiblogin",
+            "args": [ "--landscape", "dev" ],
+            "console": "integratedTerminal"
+        },
+        {
             "name": "shibboleth-syst-aws (working) ",
             "type": "python",
             "request": "launch",
