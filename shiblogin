@@ -91,7 +91,7 @@ def main ():
         )
         driver.implicitly_wait(10)
     except Exception as e:
-        print("SHIBLOGIN ERROR: selenium_setup - %s" % str(e) )
+        print("ERROR: selenium_setup - %s" % str(e) )
         sys.exit(2)
 
     # #### 
@@ -104,7 +104,7 @@ def main ():
     try:
         driver.get(startURL)
     except Exception as e:
-        print("SHIBLOGIN ERROR: start- %s" % str(e) )
+        print("ERROR: start- %s" % str(e) )
         sys.exit(2)
 
     # we wrap the whole thing in a try block to get more debugging info if there's a failure
@@ -132,11 +132,11 @@ def main ():
             assert pwentry['user'] in driver.title
         
         # Standard nagios output
-        print("SHIBLOGIN OK")
+        print("OK: Validated %s IdP using %s SP Entity-ID" % (shib_host, shib_sp) )
         return(0)
 
     except:
-        print("SHIBLOGIN ERROR: login- %s" % get_error_text(driver))
+        print("ERROR: login- %s" % get_error_text(driver))
         sys.exit(2)
         #print("ERROR: title='%s' error=%s" % (driver.title, get_error_text(driver)))
         #driver.get_screenshot_as_file('./images/state.png')
