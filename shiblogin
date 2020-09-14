@@ -48,7 +48,7 @@ def main ():
         default_host = "shib-syst.bu.edu"
         default_sp_is_verify = False
     elif landscape == 'test':
-        default_sp = 'http://ist-shib-verify-syst.bu.edu/shibboleth'
+        default_sp = 'http%3A%2F%2Fist-shib-verify-syst.bu.edu%2Fshibboleth'
         default_host = "shib-test.bu.edu"
     elif landscape == 'prod':
         default_sp = 'http://ist-shib-verify-prod.bu.edu/shibboleth'
@@ -136,7 +136,7 @@ def main ():
         return(0)
 
     except:
-        print("ERROR: login- %s|ret=2" % get_error_text(driver))
+        print("ERROR: login- {}|ret=2".format(get_error_text(driver) ) )
         sys.exit(2)
         #print("ERROR: title='%s' error=%s" % (driver.title, get_error_text(driver)))
         #driver.get_screenshot_as_file('./images/state.png')
