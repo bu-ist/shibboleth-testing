@@ -6,7 +6,7 @@ This will do simple Shibboleth IdP login checks.  It has only been tested with t
 
 ### VSCode devcontainer
 
-This should be as straightforward as `Ctrl-Shift-P` and typing `Remote-Container: Reopen window in container`
+If you are using Visual Studio Code on a local system then it should be as straightforward as `Ctrl-Shift-P` and typing `Remote-Container: Reopen window in container`
 
 ### Command line on system
 
