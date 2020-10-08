@@ -62,3 +62,20 @@ optional arguments:
   --pwfile PWFILE       JSON file contains passwords
   --verbose             Verbose output
 ```
+
+Here is an example of validating the shib-test infrastructure including on-prem and AWS:
+
+```bash
+$ ./shiblogin --landscape test --host shib-test-crc.bu.edu
+OK: Validated shib-test-crc.bu.edu IdP using http%3A%2F%2Fist-shib-verify-syst.bu.edu%2Fshibboleth SP Entity-ID|ret=1
+$ ./shiblogin --landscape test --host ist-shib-idp-test04.bu.edu
+OK: Validated ist-shib-idp-test04.bu.edu IdP using http%3A%2F%2Fist-shib-verify-syst.bu.edu%2Fshibboleth SP Entity-ID|ret=1
+$ ./shiblogin --landscape test --host ist-shib-idp-test04.bu.edu
+OK: Validated ist-shib-idp-test04.bu.edu IdP using http%3A%2F%2Fist-shib-verify-syst.bu.edu%2Fshibboleth SP Entity-ID|ret=1
+$ ./shiblogin --landscape test --host shib-test-aws.bu.edu
+OK: Validated shib-test-aws.bu.edu IdP using http%3A%2F%2Fist-shib-verify-syst.bu.edu%2Fshibboleth SP Entity-ID|ret=1
+$ ./shiblogin --landscape test --host ist-idp-test101.bu.edu
+OK: Validated ist-idp-test101.bu.edu IdP using http%3A%2F%2Fist-shib-verify-syst.bu.edu%2Fshibboleth SP Entity-ID|ret=1
+$ ./shiblogin --landscape test --host ist-idp-test102.bu.edu
+OK: Validated ist-idp-test102.bu.edu IdP using http%3A%2F%2Fist-shib-verify-syst.bu.edu%2Fshibboleth SP Entity-ID|ret=1
+```
