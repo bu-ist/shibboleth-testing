@@ -12,13 +12,20 @@ If you are using Visual Studio Code on a local system then it should be as strai
 
 The default `docker-compose.yml` file can be used to start a standalone Selenium server in the background which can then be used by the tool.  This requires `docker-compose` on the local system.  If you don't have it you can run it manually as:
 
-```
+```bash
 $ docker run -d --name selenium -p 4444:4444 selenium/standalone-chrome
 ```
 
-that the python3 interpreter have the `selenium` module.  This can be installed with the following if you have virtualenv:
+You can check that there is already a Selenium container by doing:
 
+```bash
+$ docker ps | grep selenium
+e9a019aec80c        selenium/standalone-chrome   "/opt/bin/entry_poin…"   42 seconds ago      Up 40 seconds       0.0.0.0:4444->4444/tcp   selenium
 ```
+
+You also need to make certain that the python3 interpreter have the `selenium` module.  This can be installed with the following if you have virtualenv:
+
+```bash
   $ mkdir ~/pythonenv
   $ virtualenv ~/pythonenv
   $ . ~/pythonenv/bin/activate
@@ -27,7 +34,7 @@ that the python3 interpreter have the `selenium` module.  This can be installed 
 
 Or globally for the system by doing:
 
-```
+```bash
   $ sudo yum install python3-pip
   $ sudo pip install selenium
 ```
